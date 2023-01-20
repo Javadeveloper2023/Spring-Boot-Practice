@@ -40,4 +40,9 @@ public class SampleController {
 		return sampleService.printEmpInfo(vo);
 	}
 	
+	@PostMapping(value="/saveOrUpdateEmpInfo", consumes=MediaType.APPLICATION_JSON_VALUE)
+	public String saveOrUpdateEmpInfo(@RequestBody EmployeeVO vo) {
+		return sampleService.saveOrUpdateEmpInfo(vo);
+	}
+	
 }
