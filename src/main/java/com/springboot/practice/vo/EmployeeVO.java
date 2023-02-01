@@ -9,4 +9,6 @@ public class EmployeeVO {
 	private String name;
 	private String role;
 	private double salary;
+	
+	private String deptCode;
 }

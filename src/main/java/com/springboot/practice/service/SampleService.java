@@ -6,7 +6,9 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.springboot.practice.entity.Department;
 import com.springboot.practice.entity.Employee;
+import com.springboot.practice.repository.DepartmentRepository;
 import com.springboot.practice.repository.EmployeeRepository;
 import com.springboot.practice.vo.EmployeeVO;
 
@@ -15,6 +17,9 @@ public class SampleService {
 
 	@Autowired
 	EmployeeRepository employeeRepository;
+	
+	@Autowired
+	DepartmentRepository departmentRepository;
 
 	public String printEmpInfo(EmployeeVO vo) {
 		System.out.println(vo.toString());
@@ -27,6 +32,8 @@ public class SampleService {
 			emp = employeeRepository.getById(Long.valueOf(vo.getEmpId()));
 		}
 		BeanUtils.copyProperties(vo, emp);
+		Department department = departmentRepository.findByDeptCode(vo.getDeptCode());
+		emp.setDept(department);
 		employeeRepository.save(emp);
 		BeanUtils.copyProperties(emp, vo);
 		vo.setEmpId(emp.getId().intValue());
@@ -41,5 +48,7 @@ public class SampleService {
 		employeeRepository.delete(empOpt.get());
 		return "Success";
 	}
+	
+	
 
 }

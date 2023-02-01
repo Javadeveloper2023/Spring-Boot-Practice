@@ -1,5 +1,7 @@
 package com.springboot.practice.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -49,6 +51,11 @@ public class SampleController {
 	@DeleteMapping(value = "/delete/{empId}")
 	public String deleteEmployee(@PathVariable(name = "empId") Long empId) {
 		return sampleService.deleteEmployee(empId);
+	}
+	
+	@GetMapping(value ="/employeesByDept/{deptCode}")
+	public List<EmployeeVO> getEmployees(@PathVariable(name = "deptCode") String deptCode){
+		return null;
 	}
 
 }
